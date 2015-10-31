@@ -57,16 +57,24 @@
 </head>
 
 <body>
+<div class = "row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                        <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+                          <div class="container">
+                            <div class="navbar-header">
+                              <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+                            </div>
+                          </div>
+                        </nav>
+                </div>
+                <div class="col-xs-1">
+                </div>
+        </div>
 	
 	
-	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a href="homepage.html"> <img src="http://www.goodwill.org/wp-content/themes/GII/images/general/header_logo.png" class="img-responsive" alt="Cinque Terre"> </a>
-	    </div>
-	  </div>
-	</nav>
-	<a class="btn btn-default" style="float:right;" href="http://45.55.43.61/sean/logout.php">Log Out</a>
+	<a class="btn btn-default" style="float:right;" href="http://45.55.43.61/logout.php">Log Out</a>
 	<div></div>
 	<!--User Information  
 		Items: Email Address, Level Discount Percentage the User is At -->
