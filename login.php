@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<?php include "connect.php"; ?>
 <head>
 <title>Goodwill Login</title>
 <meta charset="UTF-8">
@@ -70,10 +71,35 @@ if (isset($accessToken)) {
 	$_SESSION["user_email"] = $profile["email"];
 	$_SESSION["first"] = $profile["first_name"];
 	$_SESSION["last"] = $profile["last_name"];
+	$email = $profile["email"];
+	$first = $profile["first_name"];
+	$last = $profile["last_name"];
 	
-	echo $_SESSION["user_email"];
-	echo "your name is " . $_SESSION["first"] . " " . $_SESSION["last"];
-	echo "<br><p>hello there its me</p>";
+	//echo $_SESSION["user_email"];
+	//echo "your name is " . $_SESSION["first"] . " " . $_SESSION["last"];
+	//echo "<br><p>hello there its me</p>";
+	
+	$q1 = "SELECT * FROM Users WHERE email = '$email'";
+	$result = mysql_query($q1);
+	
+	if(mysql_num_rows($result)>0)
+	{
+		$_SESSION["test"] = "<p>hello there</p>";
+		
+	}
+	else{
+	$_SESSION["test"] = "<p>hellere</p>";
+		$query = "INSERT INTO USERS (user_id, email, zip, password, donation_level, total_donation, amount_of_donations, first_name, last_name) VALUES (, '$email', , , '1', '0', '0', '$first', '$last')";
+		$result = mysql_query($query);
+		if(!result) {
+			$_SESSION["test"] = "<p>spaghetti</p>";
+		}else{
+			$_SESSION["test"] = "<p>fsdkjflj;adkf</p>";
+		}
+	}
+	
+	
+	
 	
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
