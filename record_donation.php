@@ -28,9 +28,7 @@
 		}else{
 			echo"dog";
 		}
-		
-
-		
+			
 		
 		if(isset($_POST['num_of_donations'])){				
 			for ($x = 1; $x <= $_POST['num_of_donations']; $x++) {
@@ -41,8 +39,30 @@
 				$store_id = '12345';
 				$timestamp = date("Y-n-d G:i:s");
 				
+				$moneyDonated = 0;
+				$moneyQ = "SELECT * FROM Donation_Category WHERE Donation_ID = '$donation_type'";
+				if($r = mysql_query($moneyQ)){
+					$rows = mysql_fetch_array($r);
+					$don_price = $rows['Price'];
+					//echo "<br> money money ".$don_price;
+				}else{
+					echo"<br> no no no";
+				}
 				
+				$moneyQ2 = "SELECT * FROM Users WHERE user_id = '$user_id'";
+				if($r = mysql_query($moneyQ2)){
+					$rows = mysql_fetch_array($r);
+					
+					//echo "<br> money money ".$don_price;
+				}else{
+					echo"<br> no no no";
+				}
 				
+				//make the new money to add to user
+				$moneyDonated =  $moneyDonated + $don_price;
+				echo "<br> money donated: ".$moneyDonated;
+				
+								
 				//insert into User_Donation
 				$donationQuery = "INSERT INTO User_Donation (user_id, store_id, timestamp) VALUES ('$user_id', '$store_id', '$timestamp')";
 				if($r = mysql_query($donationQuery)){
@@ -72,13 +92,50 @@
 				
 			} 
 			
+			
+			//update today number of donations
+			//use user id and update that user table
+			$getCurDonQuery = "SELECT * FROM Users WHERE user_id = '$user_id'";
+			if($r = mysql_query($getCurDonQuery)){
+					$rows = mysql_fetch_array($r);
+					//echo "don_id is: " . $rows['don_id'];
+					$current_donation_level = $rows['donation_level'];
+					$current_amount_of_donations = $rows['amount_of_donations'];
+					echo "<br>cur: ". $current_donation_level;
+					echo "<br>cur: ". $current_amount_of_donations;					
+					
+			}
+				
+				//get donation level and add one to it then update table
+				$current_donation_level = $current_donation_level + 50;
+				$nextDonationAmount = $current_amount_of_donations + 1;
+				$uQuery = "UPDATE Users SET amount_of_donations = '$nextDonationAmount' WHERE user_id = '$user_id'";
+				$uQuery2 = "UPDATE Users SET total_donation = '$current_donation_level' WHERE user_id = '$user_id'";
+				if($r = mysql_query($uQuery)){					
+					echo "<br> yay it worked";					
+				}else{
+					echo "<br>nah"; 
+				}
+				if($r = mysql_query($uQuery2)){					
+					echo "<br> yay it worked";					
+				}else{
+					echo "<br>nah";
+				}
+				
+				//total donations
+				
+			
+			
+			
 			//redirect back to user dashboard
+			/*
 			echo '<script type="text/javascript">
 							function leave() {
 								window.location = "dashboard.php";
 							}
-							setTimeout("leave()", 1000);
+							setTimeout("leave()", 5000);
 						</script>';
+						*/
 		}
 		
 	
@@ -124,15 +181,15 @@
 	<div class="row">
 
 		<div class="col-xs-1">
-			.col-xs-1
+			
 		</div>
 		
 		<div class="col-xs-10">
 			<div class="well">
 				<div class="row"> <!-- this is a row template -->
-					<div class="col-xs-2">.col-xs-2</div>
+					<div class="col-xs-2"></div>
 					<div class="col-xs-8"><h2><center>Record your donation</center></h2></div>
-					<div class="col-xs-2">.col-xs-2</div>
+					<div class="col-xs-2"></div>
 				</div>
 				<form action="record_donation.php" method="post">
 					<div id="donation_div">
@@ -170,7 +227,7 @@
 								</center>
 							</div>
 							<div class="col-xs-1">
-								.col-xs-1
+								
 							</div>
 						</div>
 					
@@ -183,7 +240,7 @@
 		</div>
 		
 		<div class="col-xs-1">
-			.col-xs-1
+			
 		</div>
 		
 	</div>
@@ -194,9 +251,9 @@
 
 
 <div class="row"> <!-- this is a row template -->
-  <div class="col-xs-2">.col-xs-2</div>
-  <div class="col-xs-8">.col-xs-2</div>
-  <div class="col-xs-2">.col-xs-2</div>
+  <div class="col-xs-2"></div>
+  <div class="col-xs-8"></div>
+  <div class="col-xs-2"></div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
