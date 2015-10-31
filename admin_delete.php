@@ -29,37 +29,19 @@
                         echo $row["email"];
                     echo "</td></tr>"; 
     			}
-            echo "</table>";
-            */
-        }
+            echo "</table>";*/
+            
+      }
+        else
+        {
+			echo hammer time;
+		}
 	?>
     <br/>
     <br/>
     <br/>
 
-   	<?php
-    	function IsItAllAlpha($str) {
-        	$count = 0;
-            $strLength = strlen($str);
-            
-            foreach ($str as $test)
-            {
-				if (ctype_alpha($test)) {
-                	$count++;
-                }
-			}
-            
-            if($count == $strLength) 
-            {
-            	return true;
-            }
-            else
-            {
-            	return false;
-            }
-        //}
-		
-	?>
+   	
 	
 
 	<nav class="navbar navbar-inverse ">
