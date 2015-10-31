@@ -6,12 +6,17 @@
 	$first = $_SESSION['first'];
 	$last = $_SESSION['last'];
 	$user_id = $_SESSION['user_id'];
-	
-	//echo "hello " . $first . $last . ". Your email is " . $email;
-	
+	$zip = $_SESSION['zip'];
+	$zip = '21804';
+
 	require_once("connect.php");
 	$query="SELECT * FROM Users WHERE user_id = $user_id";
+	$query2="SELECT Store_Needed.*,Store_Info.*, Donation_Category.*
+					FROM Store_Needed,Store_Info, Donation_Category
+					WHERE Store_Needed.store_id = Store_Info.store_id && Store_Info.zip = $zip && 
+					Donation_Category.Donation_ID = Store_Needed.item_category";
 	$r = mysql_query($query);
+	$r2 = mysql_query($query2);
 	
 	if($r)
 	{
@@ -98,36 +103,23 @@
 	
 	
 	<!--List of:      Stores _ Needs _ Locations _ Hours  -->
-	<div>
-		<div>
-			<H1>Stores</H1>
-		</div>
-		<div>
-			<div class="information">
-				<h1>Wilmington</h1>
-				<h3>Most Needed Item</h3>
-				<p class="store-location">300 E. Lea Blvd.</p>
-				<p class="store-location">Wilmington, DE 19802</p>
-				<p class="store-location">(302) 761-4640</p>
-				<h4>STORE HOURS</h2>
-				<ul class="store-hours"><li><strong>TODAY</strong> : <span>10AM - 9PM</span></li><li><strong>TOMORROW</strong> : <span>10AM - 9PM</span></li><li><strong>SUN (11/01)</strong> : <span>11AM - 8PM</span></li><li><strong>MON (11/02)</strong> : <span>10AM - 9PM</span></li><li><strong>TUE (11/03)</strong> : <span>10AM - 9PM</span></li><li><strong>WED (11/04)</strong> : <span>10AM - 9PM</span></li><li><strong>THU (11/05)</strong> : <span>10AM - 9PM</span></li></ul>
-			</div>
-		</div>
-		<div>
-			<div class="information">
-				<h1>New York</h1>
-				<h3>Most Needed Item</h3>
-				<p class="store-location">300 E. Lea Blvd.</p>
-				<p class="store-location">Wilmington, DE 19802</p>
-				<p class="store-location">(302) 761-4640</p>
-				<h4>STORE HOURS</h2>
-				<ul class="store-hours"><li><strong>TODAY</strong> : <span>10AM - 9PM</span></li><li><strong>TOMORROW</strong> : <span>10AM - 9PM</span></li><li><strong>SUN (11/01)</strong> : <span>11AM - 8PM</span></li><li><strong>MON (11/02)</strong> : <span>10AM - 9PM</span></li><li><strong>TUE (11/03)</strong> : <span>10AM - 9PM</span></li><li><strong>WED (11/04)</strong> : <span>10AM - 9PM</span></li><li><strong>THU (11/05)</strong> : <span>10AM - 9PM</span></li></ul>
-			</div>
-		</div>
-	</div>
-	
-	
-	
-
+	<div class="container">
+  <h2>Most popular items in your (<?php echo $zip; ?>) area</h2>            
+  <table class="table table-striped">
+  <?php while ($row = mysql_fetch_array($r2)){
+    echo"<thead>";
+      echo "<tr>";
+        echo "<th>Location</th>";
+        echo "<th>Items Requested</th>";
+      echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+      echo "<tr>";
+        echo "<td>".$row["address"]."</td>";
+        echo "<td>".$row["Category"]."</td>";
+      echo "</tr>";
+    echo "</tbody>";
+  echo "</table>";
+  }?> 
 </body>
 </html>
