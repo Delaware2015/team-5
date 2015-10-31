@@ -1,4 +1,4 @@
-<?php
+<?php //connect.php
 // Address error handling
 $whichDB = 1;
 if($whichDB == 1){
