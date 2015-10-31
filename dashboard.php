@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <head>
 <html>
-    <link rel='stylesheet' href='style.css' />
+	  <title>Dashboard</title>
+	  <link rel="stylesheet" type="text/css" href="homeStyle.css">
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  <link type="text/css" rel="stylesheet" href="homeStyle.css"/>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	  <link rel='stylesheet' href='style.css' />
 </head>
 <body>
-	<div>
-		<a href="http://www.goodwill.org" title="Goodwill Industries International, Inc.">
-            <img alt="Goodwill Industries International, Inc." src="http://www.goodwill.org/wp-content/themes/GII/images/general/header_logo.png">
-        </a>
-	</div>
+	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a>
+	    </div>
+	  </div>
+	</nav>
 	
 	<!--User Information  
 		Items: Email Address, Level Discount Percentage the User is At -->
