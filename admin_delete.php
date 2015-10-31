@@ -24,7 +24,23 @@
 </head>
 <body>
 	
-	
+
+	<?php
+		//require_once("connect.php");
+		include 'connect.php';
+		
+		$sqlSelectAll = "SELECT * FROM Users";
+        //$result = mysql_query($sqlSelectAll);
+		//if ($result->num_rows > 0) 
+        //{
+			
+		
+        
+	?>
+    <br/>
+    <br/>
+    <br/>
+
 
    	
 	
@@ -56,59 +72,8 @@
 
 
 
-<script>
-	function dell()
-	{
-			var x = false;
-			
-			x = confirm("Are you sure you want to delete");
-			if(x == true)
-				return true;
-			else
-				return false;
-	}
-</script>
 
 
-					<h1>Delete Users:</h1>
-						 <div class="form-group">
-							<h6>Delete Button Is Final</h4>
-							 
-							<br>
-							
-						<div>
-							<form  method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-								Search for email: <input type="text" name="search" value="<?php echo $search ?>" class="formInputField formInputFieldLong">
-								<input type="submit" class="formInputFieldShort" style="font-size:1em; color:#708090">
-							</form>	
-						</div>
-						
-						
-						<!--Search Result -->
-						<?php
-							
-							$search = $_POST['search'];
-							if($_POST["submit"])
-							{
-								
-								
-								//$result = mysql_query("SELECT * FROM Users WHERE email = '$search'");
-								
-								echo $search;
-								
-								// sql to delete a record
-								$sqlDelete = "DELETE FROM Users WHERE email=$search";
-								if (mysql_query($sqlDelete) === TRUE) {
-									echo "Record deleted successfully";
-								} else {
-									echo "Error";
-								}
-								
-							}
-							
-							
-							
-						?>
 						
 						<br>
 						<br>
@@ -163,10 +128,10 @@
 	<script src="js/bootstrap.min.js"></script>
 
 	<?php
-		if($_POST["Delete"])
-		{
-			$
-		}
+	//	if($_POST["Delete"])
+	//	{
+	//		$
+	//	}
 	?>
 
 </body>

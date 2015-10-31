@@ -1,3 +1,31 @@
+
+<?php
+	session_start();
+	
+	$email = $_SESSION['email'];
+	$user_id = $_SESSION['user_id'];
+	
+	require_once("connect.php");
+	$query="SELECT * FROM Users WHERE user_id = $user_id";
+	$r = mysql_query($query);
+	
+	if($r)
+	{
+		while($row = mysql_fetch_array($r))
+		{
+			$current_level = $row['donation_level'];
+			$donations_cur_level = $row['total_donation'] % 5;	
+		}
+		
+	}
+	
+	$donations_to_go = '5' - $donations_cur_level;
+	$don_percent = '20' * $donations_cur_level;
+	$don_percent_left = '100' - $don_percent;
+
+?>
+
+
 <!DOCTYPE html>
 <head>
 <html>
@@ -19,7 +47,6 @@
 		<script src="../js/bootstrap.min.js"></script>
 </head>
 
-
 <body>
 	
 	
@@ -35,27 +62,30 @@
 		Items: Email Address, Level Discount Percentage the User is At -->
 	<div>
 		<!--Welcome: Email Address  -->
-		<h1>Welcome ejgerardi@gmail.com</h1>		
+		<h1>Welcome <?php echo $email; ?> </h1>		
 	</div>
 	
 	
 	<!--User Graphs  
 		Items: Progress Bar (until next Discount Level  -->
 		<!--Progress Bar (until next Discount Level  -->
+		<div>Progress Bar</div>
+	</div>
+
 	<!-- This needs bootstrap centering -->
 	<div class="container">
-		<p> Thank you for your donations your current donation level is $$something here$$$.
-			Another $$$$x$$$$$ Donations to reach the next level.<p>
+		<p> Thank you for your donations your current donation level is <?php echo $current_level; ?>.
+			Another <?php echo $donations_to_go; ?> Donations to reach the next level.<p>
 	</div>
 
 	<div class="container">
 	  <h2>Donation Progress</h2>
 	  <div class="progress">
-		<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-		  2 out of 5  
+		<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="<?php echo $don_percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $don_percent; ?>%">
+		  <?php echo $donations_cur_level; ?> out of 5  
 		</div>
-	<div class="progress-bar progress-bar-danger" role="progressbar" style="width:40%">
-		 Remaining 
+	<div class="progress-bar progress-bar-danger" role="progressbar" style="width:<?php echo $don_percent_left; ?>%">
+		 <?php echo $donations_to_go; ?> Remaining 
 	  </div>
 	  </div>
 	</div>
