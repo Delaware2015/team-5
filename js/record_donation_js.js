@@ -15,6 +15,7 @@ function addNewDonationField(){
 	//alert("hello");
 	numOfDonations = numOfDonations + 1;
 	document.getElementById("num_of_donations").value = numOfDonations;
+	//alert("hello, numofdonations is" + numOfDonations);
 	var donation_div = document.getElementById("donation_div");
 	//var fragment = create('<center><hr><div class = "form-inline">	<label for"job' + numOfJobs + '_text">Job ' + numOfJobs + ' </label>	<input type="text" class="form-control" id="job' + numOfJobs + '_text" name="job' + numOfJobs + '_text" placeholder="Job description" maxlength="75">	<input type="date" class="form-control" id="job' + numOfJobs + '_start_date" name="job' + numOfJobs + '_start_date"><input type="date" class="form-control" id="job' + numOfJobs + '_end_date" name="job' + numOfJobs + '_end_date"></div></center>');
 	//var fragment = create('<center><hr><div class = "form-inline form-group has-feedback" id ="job-div"><label for"job' + numOfJobs + '_text">Job ' + numOfJobs + '</label><input type="text" class="form-control" id="job' + numOfJobs + '_text" name="job' + numOfJobs + '_text" placeholder="Job description" maxlength="150" required><input type="date" class="form-control" id="job' + numOfJobs + '_start_date" name="job' + numOfJobs + '_start_date" required><input type="date" class="form-control" id="job' + numOfJobs + '_end_date" name="job' + numOfJobs + '_end_date" required></div></center>');	

@@ -12,90 +12,76 @@
 	if (isset($_POST["save"])){
 		print_r($_SESSION);
 		$user_id = $_SESSION['user_id'];
-		$donation_type1 = $_POST['donation_type1'];
-		$amount1 = $_POST['amount1'];
+		$user_id = 1;
+		
+		$donation_type = $_POST['donation_type1'];
+		$amount = $_POST['amount1'];
 		$store_id = '12345';
 		$timestamp = date("Y-n-d G:i:s");
 		
-		$user_id = 1;
+		
 		
 		//insert into User_Donation
 		$donationQuery = "INSERT INTO User_Donation (user_id, store_id, timestamp) VALUES ('$user_id', '$store_id', '$timestamp')";
 		if($r = mysql_query($donationQuery)){
-			echo "cheah brah";
+			//echo "cheah brah";
 		}else{
 			echo"dog";
 		}
 		
-		//now get the don_id and insert into Donation_info
-		$donationInfoQuery = "SELECT * FROM User_Donation WHERE timestamp = '$timestamp' AND user_id = '$user_id'";
-		if($r = mysql_query($donationInfoQuery)){
-			if ($r->num_rows > 0) {
-					// output data of each row
-					while($row = $result->fetch_assoc()) {
-							echo "don_id is: " . $row["don_id"];
-					}
-			}else{
-				echo"nah brah";
-			}
-			echo "cheah brah";
-		}else{
-			echo"dog";
-		}
+
 		
-		/*
-		if(isset($_POST['num-of-donations'])){				
-			for ($x = 1; $x <= $_POST['num-of-donations']; $x++) {
-				$_text = $_POST['job'. $x .'_text'];
-				$job_start_date = $_POST['job'. $x .'_start_date'];
-				$job_end_date = $_POST['job'. $x .'_end_date'];
-				$jobQuery = "INSERT INTO JOBS (PATIENT_ID, JOB_DESCRIPTION, START_DATE, END_DATE) VALUES('$PATIENT_ID' , '$job_text', '$job_start_date', '$job_end_date')";
-					
-				if(mysql_query ($jobQuery)){
-					echo"<br>query success jobQuery $x";
-				} else {
-					echo "<br>query failure $x";
+		
+		if(isset($_POST['num_of_donations'])){				
+			for ($x = 1; $x <= $_POST['num_of_donations']; $x++) {
+				echo"<br>***x is: ".$x;
+				
+				$donation_type = $_POST['donation_type'.$x];
+				$amount = $_POST['amount'.$x];
+				$store_id = '12345';
+				$timestamp = date("Y-n-d G:i:s");
+				
+				
+				
+				//insert into User_Donation
+				$donationQuery = "INSERT INTO User_Donation (user_id, store_id, timestamp) VALUES ('$user_id', '$store_id', '$timestamp')";
+				if($r = mysql_query($donationQuery)){
+					//echo "cheah brah";
+				}else{
+					echo"dog";
 				}
+				
+				//now get the don_id and insert into Donation_info
+				$donationInfoQuery = "SELECT * FROM User_Donation WHERE timestamp = '$timestamp' AND user_id = '$user_id' AND store_id = '$store_id'";
+				if($r = mysql_query($donationInfoQuery)){
+					$rows = mysql_fetch_array($r);
+					//echo "don_id is: " . $rows['don_id'];
+					$don_id = $rows['don_id'];
+					
+					$donationInfoQuery2 = "INSERT INTO Donation_Info (don_id, item_category, amount) VALUES ('$don_id', '$donation_type' , '$amount')";
+					if($r = mysql_query($donationInfoQuery2)){
+						//echo "<br>cheah brah donationInfoQuery2";
+					}else{
+						echo"dog";
+					}
+				
+					echo "cheah brah";
+				}else{
+					echo"dog";
+				}
+				
 			} 
-		}
-		*/
-		
-		
-
-
-		/*
-		$registerQuery = "INSERT INTO Users (email, zip, password, first_name, last_name) VALUES ('$email', '$zipcode', '$pwd', '$fname', '$lname')";
-		if($r = mysql_query($registerQuery)){
-			print_r($_SESSION);
+			
+			//redirect back to user dashboard
 			echo '<script type="text/javascript">
 							function leave() {
 								window.location = "dashboard.php";
 							}
 							setTimeout("leave()", 1000);
 						</script>';
-		}else{
-			echo"dog";
 		}
-		*/
 		
-		
-		
-		/*
-		if(isset($_POST['num-of-donations'])){				
-				for ($x = 1; $x <= $_POST['num-of-donations']; $x++) {
-					$job_text = $_POST['job'. $x .'_text'];
-					$job_start_date = $_POST['job'. $x .'_start_date'];
-					$job_end_date = $_POST['job'. $x .'_end_date'];
-					$jobQuery = "INSERT INTO JOBS (PATIENT_ID, JOB_DESCRIPTION, START_DATE, END_DATE) VALUES('$PATIENT_ID' , '$job_text', '$job_start_date', '$job_end_date')";
-						
-					if(mysql_query ($jobQuery)){
-						echo"<br>query success jobQuery $x";
-					} else {
-						echo "<br>query failure $x";
-					}
-				} 
-			}
-		*/
+	
 	
 	}
 	
@@ -172,6 +158,8 @@
 							<input type="number" class="form-control" id="amount1" name="amount1" min="1" placeholder = "Amount of Donated Items" required>
 						</div>
 						
+					</div>
+						
 						<div class="row"> <!-- this is a row template -->
 							<div class="col-xs-1">
 								<a class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Add Another Job" onclick="addNewDonationField()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
@@ -189,7 +177,7 @@
 					
 					
 					
-					</div>
+					
 				</form>
 			</div>
 		</div>
