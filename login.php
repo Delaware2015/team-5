@@ -24,8 +24,10 @@
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+	  document.getElementById('status').innerHTML = 'Log In ' +
+	  'with Facebook.';
+     //document.getElementById('status').innerHTML = 'Please log ' +
+        //'into Facebook.';
     }
   }
 
@@ -79,9 +81,11 @@
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
+	  console.log(response);	
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.name + '! Your email is ' + response.email + '!';
+		
     });
   }
 </script>
@@ -94,7 +98,7 @@
 
 <h3>Login</h3>
 
-<div style="text-align:center;" >
+<div style="text-align:center;" border="10px solid black;">
 	<form action="login.php" method="post">
 		<label for="username">Username:</label>
 		<input type="text" name="username" id="uname"><br><br>
