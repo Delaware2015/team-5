@@ -1,7 +1,7 @@
 <?php //connect.php
 
 // Address error handling
-$whichDB = 0;
+$whichDB = 1;
 if($whichDB == 1){
 	$user = 'seand';
 	$pass = 'abc123';

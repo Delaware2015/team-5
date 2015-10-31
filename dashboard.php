@@ -9,9 +9,10 @@
 
 	require_once("connect.php");
 	$query="SELECT * FROM Users WHERE user_id = $user_id";
-	$query2="SELECT Store_Needed.* 
-					FROM Store_Needed,Store_Info 
-					WHERE Store_Needed.store_id = Store_Info.store_id && Store_Info.zip = 21804";
+	$query2="SELECT Store_Needed.*,Store_Info.*, Donation_Category.*
+					FROM Store_Needed,Store_Info, Donation_Category
+					WHERE Store_Needed.store_id = Store_Info.store_id && Store_Info.zip = $zip && 
+					Donation_Category.Donation_ID = Store_Needed.item_category";
 	$r = mysql_query($query);
 	$r2 = mysql_query($query2);
 	
@@ -102,7 +103,7 @@
 	<div class="container">
   <h2>Most popular items in your (<?php echo $zip; ?>) area</h2>            
   <table class="table table-striped">
-  <?php while ($row = mysql_fetch_row($r2)){
+  <?php while ($row = mysql_fetch_array($r2)){
     echo"<thead>";
       echo "<tr>";
         echo "<th>Location</th>";
@@ -111,16 +112,8 @@
     echo "</thead>";
     echo "<tbody>";
       echo "<tr>";
-        echo "<td>John</td>";
-        echo "<td>Doe</td>";
-      echo "</tr>";
-      echo "<tr>";
-        echo "<td>Mary</td>";
-        echo "<td>Moe</td>";
-      echo "</tr>";
-      echo "<tr>";
-        echo "<td>July</td>";
-        echo "<td>Dooley</td>";
+        echo "<td>".$row["address"]."</td>";
+        echo "<td>".$row["Category"]."</td>";
       echo "</tr>";
     echo "</tbody>";
   echo "</table>";
