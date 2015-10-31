@@ -53,7 +53,7 @@ if (isset($accessToken)) {
 	}
 	// redirect the user back to the same page if it has "code" GET variable
 	if (isset($_GET['code'])) {
-		header('Location:http://45.55.43.61/sean/dashboard.php');
+		header('Location:http://45.55.43.61/dashboard.php');
 	}
 	// getting basic info about user
 	try {
@@ -70,11 +70,11 @@ if (isset($accessToken)) {
 	}
 	
 	// printing $profile array on the screen which holds the basic info about user
-	print_r($profile);
-	echo '<a href="http://45.55.43.61/sean/logout.php">Log Out</a>';
+	//print_r($profile);
+	echo '<a href="http://45.55.43.61/logout.php">Log Out</a>';
 	//header("Location:http://45.55.43.61/sean/login-new.php");
 	
-	echo $profile["email"];
+	//echo $profile["email"];
 	$_SESSION["user_email"] = $profile["email"];
 	$_SESSION["first"] = $profile["first_name"];
 	$_SESSION["last"] = $profile["last_name"];
@@ -111,7 +111,7 @@ if (isset($accessToken)) {
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
 	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/sean/login.php', $permissions);
+	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/login.php', $permissions);
 	//echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 	$loginMessage = '<a style="text-align:center;font-size: 135%;" class="btn btn-default" href="' . $loginUrl . '">Log in with Facebook!</a>';
 	
@@ -120,6 +120,25 @@ if (isset($accessToken)) {
 ?>
 </head>
 <body>
+<br>
+
+<div class = "row">
+  <div class="col-xs-1">
+    </div>
+      <div class="col-xs-10">
+          <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+            <div class="container">
+              <div class="navbar-header">
+                 <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+              </div>
+            </div>
+          </nav>
+        </div>
+      <div class="col-xs-1">
+   </div>
+</div>
+
+
 
 <h1 style="text-align:center;">Login</h1><br>
 
@@ -135,6 +154,10 @@ if (isset($accessToken)) {
 <?php echo $loginMessage ?>
 
 <div id="status">
+<br>
+<div class="btn-group-vertical">
+        <a href="register_reg.php" class="btn btn-default">Register Without Facebook</a>
+</div>
 </div>
 </div>
 

@@ -7,10 +7,10 @@
 	$last = $_SESSION['last'];
 	$user_id = $_SESSION['user_id'];
 	$zip = $_SESSION['zip'];
-	$zip = '21804';
-
+	$zip = '19802';
+	//echo "$email";
 	require_once("connect.php");
-	$query="SELECT * FROM Users WHERE user_id = $user_id";
+	$query="SELECT * FROM Users WHERE email = '$email'";
 	$query2="SELECT Store_Needed.*,Store_Info.*, Donation_Category.*
 					FROM Store_Needed,Store_Info, Donation_Category
 					WHERE Store_Needed.store_id = Store_Info.store_id && Store_Info.zip = $zip && 
@@ -22,8 +22,9 @@
 	{
 		while($row = mysql_fetch_array($r))
 		{
+			$_SESSION['user_id'] = $row[user_id];
 			$current_level = $row['donation_level'];
-			$donations_cur_level = $row['total_donation'] % 5;	
+			$donations_cur_level = $row['amount_of_donations'] % 5;	
 		}
 		
 	}
@@ -57,16 +58,27 @@
 </head>
 
 <body>
+<div class="container">
+
+<br>
+<div class = "row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                        <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+                          <div class="container">
+                            <div class="navbar-header">
+                              <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+                            </div>
+                          </div>
+                        </nav>
+                </div>
+                <div class="col-xs-1">
+                </div>
+        </div>
 	
 	
-	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a href="homepage.html"> <img src="http://www.goodwill.org/wp-content/themes/GII/images/general/header_logo.png" class="img-responsive" alt="Cinque Terre"> </a>
-	    </div>
-	  </div>
-	</nav>
-	<a class="btn btn-default" style="float:right;" href="http://45.55.43.61/sean/logout.php">Log Out</a>
+	<a class="btn btn-default" style="float:right;" href="http://45.55.43.61/logout.php">Log Out</a>
 	<div></div>
 	<!--User Information  
 		Items: Email Address, Level Discount Percentage the User is At -->
@@ -104,9 +116,9 @@
 	
 	<!--List of:      Stores _ Needs _ Locations _ Hours  -->
 	<div class="container">
-  <h2>Most popular items in your (<?php echo $zip; ?>) area</h2>            
-  <table class="table table-striped">
-  <?php while ($row = mysql_fetch_array($r2)){
+  <h2>Most requested items in your (<?php echo $zip; ?>) area</h2>            
+  <table class="table table-bordered table-striped">
+    <?php
     echo"<thead>";
       echo "<tr>";
         echo "<th>Location</th>";
@@ -114,12 +126,37 @@
       echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
+    while ($row = mysql_fetch_array($r2)){
       echo "<tr>";
         echo "<td>".$row["address"]."</td>";
         echo "<td>".$row["Category"]."</td>";
       echo "</tr>";
+      }
     echo "</tbody>";
-  echo "</table>";
-  }?> 
+  echo "</table>"; 
+  ?>
+
+<div style="align-center"  class="btn-group-vertical">
+
+<div class="container">
+<div class="row">
+	<div class="col-xs-5"></div>
+	<div class="col-xs-2">
+		<center>
+		<a href="record_donation.php" class="btn btn-primary btn-block" style="width:150px">Record Donations</a>
+		<a href="admin.php" class = "btn btn-primary btn-block" style="width:150px"> Admin Page </a>
+		<a href="admin_delete.php" class="btn btn-primary btn-block" style="width:150px">Admin Delete</a>
+        	<a href="items.php" class = "btn btn-primary btn-block" style="width:150px">Items </a>
+		</center>
+	</div>
+	<div class="col-xs-5"></div>
+</div>
+</div>
+
+	
+</div>
+
+
+</div>
 </body>
 </html>

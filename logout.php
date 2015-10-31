@@ -13,6 +13,6 @@ $fb = new Facebook\Facebook([
 //$url = 'https://www.facebook.com/logout.php?next=' . 'http://45.55.43.61/sean/login-new.php' .
   //'&access_token='.$token;
 session_destroy();
-header("Location:http://45.55.43.61/sean/login.php");
+header("Location:http://45.55.43.61/login.php");
 
 ?>
