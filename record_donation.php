@@ -10,11 +10,14 @@
 	
 	
 	if (isset($_POST["save"])){
+		print_r($_SESSION);
 		$user_id = $_SESSION['user_id'];
 		$donation_type1 = $_POST['donation_type1'];
 		$amount1 = $_POST['amount1'];
 		$store_id = '12345';
 		$timestamp = date("Y-n-d G:i:s");
+		
+		$user_id = 1;
 		
 		//insert into User_Donation
 		$donationQuery = "INSERT INTO User_Donation (user_id, store_id, timestamp) VALUES ('$user_id', '$store_id', '$timestamp')";
@@ -25,10 +28,22 @@
 		}
 		
 		//now get the don_id and insert into Donation_info
-		$donationInfoQuery = "";
+		$donationInfoQuery = "SELECT * FROM User_Donation WHERE timestamp = '$timestamp' AND user_id = '$user_id'";
+		if($r = mysql_query($donationInfoQuery)){
+			if ($r->num_rows > 0) {
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+							echo "don_id is: " . $row["don_id"];
+					}
+			}else{
+				echo"nah brah";
+			}
+			echo "cheah brah";
+		}else{
+			echo"dog";
+		}
 		
-		
-		
+		/*
 		if(isset($_POST['num-of-donations'])){				
 			for ($x = 1; $x <= $_POST['num-of-donations']; $x++) {
 				$_text = $_POST['job'. $x .'_text'];
@@ -43,6 +58,7 @@
 				}
 			} 
 		}
+		*/
 		
 		
 
