@@ -1,8 +1,15 @@
 <?php
 // Address error handling
-$user = 'root';
-$pass = 'code4good';
-$db = 'goodwill';
+$whichDB = 1;
+if($whichDB == 1){
+	$user = 'seand';
+	$pass = 'abc123';
+	$db = 'goodwill';
+}else{
+	$user = 'root';
+	$pass = 'code4good';
+	$db = 'goodwill';
+}
 
 ini_set('display_errors' , 1);
 error_reporting(E_ALL & ~E_NOTICE);
@@ -24,4 +31,6 @@ else{
 }
 
 ?>		
+
+
 
