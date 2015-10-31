@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Goodwill Login</title>
-<meta charset="UTF-8">
 <?php
 session_start();
 require_once __DIR__ . '/web-test/Facebook/autoload.php';
@@ -78,32 +73,6 @@ if (isset($accessToken)) {
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
 	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/sean/login.php', $permissions);
-	//echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
-	$loginMessage = '<a style="text-align:center;" href="' . $loginUrl . '">Log in with Facebook!</a>';
-	
+	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/sean/login-new.php', $permissions);
+	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 }
-
-?>
-</head>
-<body>
-
-<h3>Login</h3>
-
-<div style="text-align:center;" border="10px solid black;">
-	<form action="login.php" method="post">
-		<label for="username">Username:</label>
-		<input type="text" name="username" id="uname"><br><br>
-		<label for="password">Password:</label>
-		<input type="text" name="username" id="pword"><br><br>
-		<input type="submit" value="Submit">
-	</form>	
-	<p style="text-align:center;">OR</p>
-<?php echo $loginMessage ?>
-
-<div id="status">
-</div>
-</div>
-
-</body>
-</html>
