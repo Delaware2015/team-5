@@ -12,6 +12,14 @@
 <h1>Compose Email:</h1>
  <form role="form">
  <div class="form-group">
+ <label for="sel1">Select User Donation Level(s):</label>
+   <select multiple class="form-control" id="sel1">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+  </br></br>
   <textarea class="form-control" rows="5" id="message"></textarea>
 </div>
   <button type="submit" class="btn btn-default">Submit</button>
