@@ -1,3 +1,7 @@
+<?php
+if (isset($_POST["send"]))
+	$message = "Email " .$_POST["message"]. " sent";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,29 +37,31 @@
 			<div class="col-xs-10">
 				<div class="well">
 					<h1>Compose Email:</h1>
-					 <form role="form">
+					 <form action="admin.php" method="post">
 					 <div class="form-group">
 					 <label for="sel1">Select User Donation Level(s):</label>
-						 <select multiple class="form-control" id="sel1">
-							<option>1</option>
+						 <select multiple class="form-control" name="sel1">
+							<option name="opt1">1</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
+							<option>5</option>
 						</select>
 						</br></br>
-						<textarea class="form-control" rows="5" id="message"></textarea>
+						<textarea class="form-control" rows="5" name="message"></textarea>
 					</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" name="send" class="btn btn-default">Submit</button>
 					</form>
+					<?php echo $message; ?>
 				</div>
 			</div>
 			<div class="col-xs-1">
 				.col-xs-1			
 			</div>
-			
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+

@@ -8,9 +8,9 @@
 	$user_id = $_SESSION['user_id'];
 	$zip = $_SESSION['zip'];
 	$zip = '21804';
-
+	//echo "$email";
 	require_once("connect.php");
-	$query="SELECT * FROM Users WHERE user_id = $user_id";
+	$query="SELECT * FROM Users WHERE email = '$email'";
 	$query2="SELECT Store_Needed.*,Store_Info.*, Donation_Category.*
 					FROM Store_Needed,Store_Info, Donation_Category
 					WHERE Store_Needed.store_id = Store_Info.store_id && Store_Info.zip = $zip && 
