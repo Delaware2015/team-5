@@ -4,6 +4,13 @@
 <head>
 <title>Goodwill Login</title>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="homeStyle.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="homeStyle.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <?php
 session_start();
 require_once __DIR__ . '/web-test/Facebook/autoload.php';
@@ -106,7 +113,7 @@ if (isset($accessToken)) {
 	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
 	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/sean/login.php', $permissions);
 	//echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
-	$loginMessage = '<a style="text-align:center;" href="' . $loginUrl . '">Log in with Facebook!</a>';
+	$loginMessage = '<a style="text-align:center;font-size: 135%;" class="btn btn-default" href="' . $loginUrl . '">Log in with Facebook!</a>';
 	
 }
 
@@ -114,17 +121,17 @@ if (isset($accessToken)) {
 </head>
 <body>
 
-<h3 style="text-align:center;">Login</h3>
+<h1 style="text-align:center;">Login</h1><br>
 
-<div style="text-align:center;" border="10px solid black;">
+<div class="well" style="text-align:center;" border="10px solid black;">
 	<form action="login.php" method="post">
 		<label for="username">Username:</label>
 		<input type="text" name="username" id="uname"><br><br>
 		<label for="password">Password:</label>
 		<input type="text" name="username" id="pword"><br><br>
-		<input type="submit" value="Submit">
-	</form>	
-	<p style="text-align:center;">OR</p>
+		<input type="submit" value="Login">
+	</form><br>	
+	<strong style="text-align:center;">OR</strong><br><br>
 <?php echo $loginMessage ?>
 
 <div id="status">
