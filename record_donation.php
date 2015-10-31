@@ -1,10 +1,12 @@
-<?php	//register_reg.php
+<?php	//record_donation.php
 	//include the database connect file
 	include 'connect.php';
 ?>
 
 <?php
 	//this will be the code to insert into the database 
+	
+	//first thing 
 	
 	
 	if (isset($_POST["register"])){
@@ -42,7 +44,7 @@
 
 <html>
 <head>
-  <title>Register</title>
+  <title>Record Donation</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -81,13 +83,13 @@
 			<div class="well">
 				<div class="row"> <!-- this is a row template -->
 					<div class="col-xs-2">.col-xs-2</div>
-					<div class="col-xs-8"><h2><center>Register</center></h2></div>
+					<div class="col-xs-8"><h2><center>Record your donation</center></h2></div>
 					<div class="col-xs-2">.col-xs-2</div>
 				</div>
 				<form action="register_reg.php" method="post">
 					<div class="form-group">
-						<label for="fname">First Name:</label>
-						<input type="text" class="form-control" id="fname" name="fname" required>
+						<label for="donation_type">Donation Type</label>
+						<input type="text" class="form-control" id="donation_type" name="donation_type" required>
 					</div>
 					<div class="form-group">
 						<label for="lname">Last Name:</label>

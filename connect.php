@@ -1,4 +1,5 @@
-<?php
+<?php //connect.php
+
 // Address error handling
 $whichDB = 1;
 if($whichDB == 1){
@@ -11,6 +12,7 @@ if($whichDB == 1){
 	$db = 'goodwill';
 }
 
+session_start();
 ini_set('display_errors' , 1);
 error_reporting(E_ALL & ~E_NOTICE);
 // Attempt to Connect
@@ -29,8 +31,4 @@ if (@mysql_select_db($db, $connection)){
 else{
 		die('<p> Could not select the goodwill database because: <b>' .mysql_error() . '</b></p>');
 }
-
 ?>		
-
-
-
