@@ -46,7 +46,7 @@ if (isset($accessToken)) {
 	}
 	// redirect the user back to the same page if it has "code" GET variable
 	if (isset($_GET['code'])) {
-		header('Location:http://45.55.43.61/sean/landing.php');
+		header('Location:http://45.55.43.61/sean/dashboard.php');
 	}
 	// getting basic info about user
 	try {
@@ -84,18 +84,18 @@ if (isset($accessToken)) {
 	
 	if(mysql_num_rows($result)>0)
 	{
-		$_SESSION["test"] = "<p>hello there</p>";
+		//$_SESSION["test"] = "<p>hello there</p>";
 		
 	}
 	else{
-	$_SESSION["test"] = "<p>hellere</p>";
+	//$_SESSION["test"] = "<p>hellere</p>";
 		$query = "INSERT INTO Users (email, zip, password, first_name, last_name) VALUES ('$email', 'NULL', 'NULL','$first', '$last')";
 		$result = mysql_query($query);
-		if(!result) {
-			$_SESSION["test"] = "<p>spaghetti</p>";
-		}else{
-			$_SESSION["test"] = "<p>fsdkjflj;adkf</p>";
-		}
+		//if(!result) {
+			//$_SESSION["test"] = "<p>spaghetti</p>";
+		//}else{
+			//$_SESSION["test"] = "<p>fsdkjflj;adkf</p>";
+		//}
 	}
 	
 	
@@ -114,7 +114,7 @@ if (isset($accessToken)) {
 </head>
 <body>
 
-<h3>Login</h3>
+<h3 style="text-align:center;">Login</h3>
 
 <div style="text-align:center;" border="10px solid black;">
 	<form action="login.php" method="post">
