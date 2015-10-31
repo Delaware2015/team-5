@@ -89,7 +89,7 @@ if (isset($accessToken)) {
 	}
 	else{
 	$_SESSION["test"] = "<p>hellere</p>";
-		$query = "INSERT INTO USERS (user_id, email, zip, password, donation_level, total_donation, amount_of_donations, first_name, last_name) VALUES (, '$email', , , '1', '0', '0', '$first', '$last')";
+		$query = "INSERT INTO Users (email, zip, password, first_name, last_name) VALUES ('$email', 'NULL', 'NULL','$first', '$last')";
 		$result = mysql_query($query);
 		if(!result) {
 			$_SESSION["test"] = "<p>spaghetti</p>";
