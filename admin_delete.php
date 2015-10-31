@@ -1,12 +1,16 @@
-<html lang="en"><head>
+<html lang="en">
+<head>
   <title>Admin Delete User</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
-<style type="text/css"></style></head>
+<style type="text/css"></style>
+</head>
 <body>
+	
 	<?php
+		//require_once("connect.php");
 		include 'connect.php';
 		
 		$sqlSelectAll = "SELECT * FROM Users";
@@ -16,12 +20,12 @@
 			
 		if($r = mysql_query($sqlSelectAll)){
         	echo "hello";
-        	/*echo '<table style="padding-left:15% ; padding-right:15%;width:100%">';
+			echo '<table style="padding-left:15% ; padding-right:15%;width:100%">';
                 echo "<tr>";
    					echo "<th>User ID</th>";
     				echo "<th>Email Address</th>";
  				echo "</tr>";
-				while($row = $result->fetch_assoc()) 
+				while($row = mysql_fetch_assoc($r)) 
                 {
                     echo "<tr><td>";
                     	echo $row["user_id"];
@@ -29,12 +33,12 @@
                         echo $row["email"];
                     echo "</td></tr>"; 
     			}
-            echo "</table>";*/
+            echo "</table>";
             
       }
         else
         {
-			echo hammer time;
+			echo "hammer time";
 		}
 	?>
     <br/>
@@ -89,4 +93,5 @@
 	<script src="js/bootstrap.min.js"></script>
 
 
-</body></html>
+</body>
+</html>
