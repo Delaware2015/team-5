@@ -154,6 +154,10 @@ if (isset($accessToken)) {
 <?php echo $loginMessage ?>
 
 <div id="status">
+<br>
+<div class="btn-group-vertical">
+        <a href="register_reg.php" class="btn btn-default">Register Without Facebook</a>
+</div>
 </div>
 </div>
 

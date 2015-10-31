@@ -10,9 +10,9 @@
 	
 	
 	if (isset($_POST["save"])){
-		print_r($_SESSION);
+		//print_r($_SESSION);
 		$user_id = $_SESSION['user_id'];
-		$user_id = 1;
+		//$user_id = 1;
 		
 		$donation_type = $_POST['donation_type1'];
 		$amount = $_POST['amount1'];
@@ -26,13 +26,13 @@
 		if($r = mysql_query($donationQuery)){
 			//echo "cheah brah";
 		}else{
-			echo"dog";
+			//echo"dog";
 		}
 			
 		
 		if(isset($_POST['num_of_donations'])){				
 			for ($x = 1; $x <= $_POST['num_of_donations']; $x++) {
-				echo"<br>***x is: ".$x;
+				//echo"<br>***x is: ".$x;
 				
 				$donation_type = $_POST['donation_type'.$x];
 				$amount = $_POST['amount'.$x];
@@ -46,7 +46,7 @@
 					$don_price = $rows['Price'];
 					//echo "<br> money money ".$don_price;
 				}else{
-					echo"<br> no no no";
+					//echo"<br> no no no";
 				}
 				
 				$moneyQ2 = "SELECT * FROM Users WHERE user_id = '$user_id'";
@@ -55,12 +55,12 @@
 					
 					//echo "<br> money money ".$don_price;
 				}else{
-					echo"<br> no no no";
+					//echo"<br> no no no";
 				}
 				
 				//make the new money to add to user
 				$moneyDonated =  $moneyDonated + $don_price;
-				echo "<br> money donated: ".$moneyDonated;
+				//echo "<br> money donated: ".$moneyDonated;
 				
 								
 				//insert into User_Donation
@@ -68,7 +68,7 @@
 				if($r = mysql_query($donationQuery)){
 					//echo "cheah brah";
 				}else{
-					echo"dog";
+					//echo"dog";
 				}
 				
 				//now get the don_id and insert into Donation_info
@@ -82,12 +82,12 @@
 					if($r = mysql_query($donationInfoQuery2)){
 						//echo "<br>cheah brah donationInfoQuery2";
 					}else{
-						echo"dog";
+						//echo"dog";
 					}
 				
-					echo "cheah brah";
+					//echo "cheah brah";
 				}else{
-					echo"dog";
+					//echo"dog";
 				}
 				
 			} 
@@ -101,8 +101,8 @@
 					//echo "don_id is: " . $rows['don_id'];
 					$current_donation_level = $rows['donation_level'];
 					$current_amount_of_donations = $rows['amount_of_donations'];
-					echo "<br>cur: ". $current_donation_level;
-					echo "<br>cur: ". $current_amount_of_donations;					
+					//echo "<br>cur: ". $current_donation_level;
+					//echo "<br>cur: ". $current_amount_of_donations;					
 					
 			}
 				
@@ -112,14 +112,14 @@
 				$uQuery = "UPDATE Users SET amount_of_donations = '$nextDonationAmount' WHERE user_id = '$user_id'";
 				$uQuery2 = "UPDATE Users SET total_donation = '$current_donation_level' WHERE user_id = '$user_id'";
 				if($r = mysql_query($uQuery)){					
-					echo "<br> yay it worked";					
+					//echo "<br> yay it worked";					
 				}else{
-					echo "<br>nah"; 
+					//echo "<br>nah"; 
 				}
 				if($r = mysql_query($uQuery2)){					
-					echo "<br> yay it worked";					
+					//echo "<br> yay it worked";					
 				}else{
-					echo "<br>nah";
+					//echo "<br>nah";
 				}
 				
 				//total donations
@@ -128,14 +128,14 @@
 			
 			
 			//redirect back to user dashboard
-			/*
+			
 			echo '<script type="text/javascript">
 							function leave() {
 								window.location = "dashboard.php";
 							}
-							setTimeout("leave()", 5000);
+							setTimeout("leave()", 1000);
 						</script>';
-						*/
+						
 		}
 		
 	
@@ -158,21 +158,22 @@
 <body>
 
 
-	<nav class="navbar navbar-inverse ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li> 
-					<li><a href="#">Page 3</a></li> 
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<br>
+<div class = "row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                        <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+                          <div class="container">
+                            <div class="navbar-header">
+                              <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+                            </div>
+                          </div>
+                        </nav>
+                </div>
+                <div class="col-xs-1">
+                </div>
+        </div>
 
 
 

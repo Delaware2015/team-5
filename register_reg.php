@@ -51,21 +51,23 @@
 <body>
 
 
-	<nav class="navbar navbar-inverse ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li> 
-					<li><a href="#">Page 3</a></li> 
-				</ul>
-			</div>
-		</div>
-	</nav>
+<br>
+
+<div class = "row">
+  <div class="col-xs-1">
+    </div>
+      <div class="col-xs-10">
+          <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+            <div class="container">
+              <div class="navbar-header">
+                 <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+              </div>
+            </div>
+          </nav>
+        </div>
+      <div class="col-xs-1">
+   </div>
+</div>
 
 
 
@@ -74,15 +76,15 @@
 	<div class="row">
 
 		<div class="col-xs-1">
-			.col-xs-2
+			
 		</div>
 		
 		<div class="col-xs-10">
 			<div class="well">
 				<div class="row"> <!-- this is a row template -->
-					<div class="col-xs-2">.col-xs-2</div>
+					<div class="col-xs-2"></div>
 					<div class="col-xs-8"><h2><center>Register</center></h2></div>
-					<div class="col-xs-2">.col-xs-2</div>
+					<div class="col-xs-2"></div>
 				</div>
 				<form action="register_reg.php" method="post">
 					<div class="form-group">
@@ -117,7 +119,7 @@
 		</div>
 		
 		<div class="col-xs-1">
-			.col-xs-2
+			
 		</div>
 		
 	</div>
@@ -128,9 +130,9 @@
 
 
 <div class="row"> <!-- this is a row template -->
-  <div class="col-xs-2">.col-xs-2</div>
-  <div class="col-xs-8">.col-xs-2</div>
-  <div class="col-xs-2">.col-xs-2</div>
+  <div class="col-xs-2"></div>
+  <div class="col-xs-8"></div>
+  <div class="col-xs-2"></div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

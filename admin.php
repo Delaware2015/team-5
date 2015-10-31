@@ -14,25 +14,27 @@ if (isset($_POST["send"]))
 <body>
 
 	<nav class="navbar navbar-inverse ">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li> 
-					<li><a href="#">Page 3</a></li> 
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<br>
+<div class = "row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-10">
+                        <nav style="background-color:#5eb0e5"class="navbar navbar-inverse">
+                          <div class="container">
+                            <div class="navbar-header">
+                              <center><a style="padding:2px;"href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a></center>
+                            </div>
+                          </div>
+                        </nav>
+                </div>
+                <div class="col-xs-1">
+                </div>
+        </div>
 	
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-1">
-				.col-xs-1
+				
 			</div>
 			<div class="col-xs-10">
 				<div class="well">
@@ -56,7 +58,7 @@ if (isset($_POST["send"]))
 				</div>
 			</div>
 			<div class="col-xs-1">
-				.col-xs-1			
+							
 			</div>
 		</div>
 	</div>
