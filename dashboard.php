@@ -2,8 +2,12 @@
 <?php
 	session_start();
 	
-	$email = $_SESSION['email'];
+	$email = $_SESSION['user_email'];
+	$first = $_SESSION['first'];
+	$last = $_SESSION['last'];
 	$user_id = $_SESSION['user_id'];
+	
+	//echo "hello " . $first . $last . ". Your email is " . $email;
 	
 	require_once("connect.php");
 	$query="SELECT * FROM Users WHERE user_id = $user_id";
@@ -57,12 +61,13 @@
 	    </div>
 	  </div>
 	</nav>
+	<a class="btn btn-default" style="float:right;" href="http://45.55.43.61/sean/logout.php">Log Out</a>
 	<div></div>
 	<!--User Information  
 		Items: Email Address, Level Discount Percentage the User is At -->
 	<div>
-		<!--Welcome: Email Address  -->
-		<h1>Welcome <?php echo $email; ?> </h1>		
+		<!--Welcome: Person name  -->
+		<h1>Welcome <?php echo $first . " " . $last; ?> </h1>		
 	</div>
 	
 	
