@@ -18,28 +18,8 @@
 		//if ($result->num_rows > 0) 
         //{
 			
-		if($r = mysql_query($sqlSelectAll)){
-        	echo "hello";
-			echo '<table style="padding-left:15% ; padding-right:15%;width:100%">';
-                echo "<tr>";
-   					echo "<th>User ID</th>";
-    				echo "<th>Email Address</th>";
- 				echo "</tr>";
-				while($row = mysql_fetch_assoc($r)) 
-                {
-                    echo "<tr><td>";
-                    	echo $row["user_id"];
-                    echo "</td><td>";
-                        echo $row["email"];
-                    echo "</td></tr>"; 
-    			}
-            echo "</table>";
-            
-      }
-        else
-        {
-			echo "hammer time";
-		}
+		
+        
 	?>
     <br/>
     <br/>
@@ -71,12 +51,47 @@
 			</div>
 			<div class="col-xs-10">
 				<div class="well">
+
+
+
+
+
+
+
 					<h1>Delete Users:</h1>
 					 <form role="form">
 					 <div class="form-group">
 					 <label for="sel1">Delete Button Is Final</label>
 						 
 						<br><br>
+
+					<?php
+						if($r = mysql_query($sqlSelectAll))
+						{
+				        	echo "hello";
+							echo '<table style="padding-left:15% ; padding-right:15%;width:100%">';
+				                echo "<tr>";
+				   					echo "<th>User ID</th>";
+				    				echo "<th>Email Address</th>";
+				 				echo "</tr>";
+								while($row = mysql_fetch_assoc($r)) 
+				                {
+				                    echo "<tr><td>";
+				                    	echo $row["user_id"];
+				                    echo "</td><td>";
+				                        echo $row["email"];
+				                    echo "</td></tr>"; 
+				    			}
+				            echo "</table>";      
+				      	}
+				      	else
+				        {
+							echo "hammer time";
+						}
+					?>
+
+
+
 						
 					</div>
 						<button type="submit" class="btn btn-default">Delete</button>
