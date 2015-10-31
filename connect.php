@@ -1,6 +1,6 @@
 <?php
 // Address error handling
-$whichDB = 1;
+$whichDB = 0;
 if($whichDB == 1){
 	$user = 'seand';
 	$pass = 'abc123';
