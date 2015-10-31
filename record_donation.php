@@ -9,7 +9,7 @@
 	//first thing 
 	
 	
-	if (isset($_POST["register"])){
+	if (isset($_POST["save"])){
 	
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
@@ -34,6 +34,25 @@
 		}else{
 			echo"dog";
 		}
+		
+		
+		
+		
+		if(isset($_POST['num-of-donations'])){				
+				for ($x = 1; $x <= $_POST['num-of-jobs']; $x++) {
+					$job_text = $_POST['job'. $x .'_text'];
+					$job_start_date = $_POST['job'. $x .'_start_date'];
+					$job_end_date = $_POST['job'. $x .'_end_date'];
+					$jobQuery = "INSERT INTO JOBS (PATIENT_ID, JOB_DESCRIPTION, START_DATE, END_DATE) VALUES('$PATIENT_ID' , '$job_text', '$job_start_date', '$job_end_date')";
+						
+					if(mysql_query ($jobQuery)){
+						echo"<br>query success jobQuery $x";
+					} else {
+						echo "<br>query failure $x";
+					}
+				} 
+			}
+		
 	
 	}
 	
@@ -88,31 +107,28 @@
 				</div>
 				<form action="register_reg.php" method="post">
 					<div class="form-group">
-						<label for="donation_type">Donation Type</label>
-						<input type="text" class="form-control" id="donation_type" name="donation_type" required>
+						<label for="donation_type1">Donation Type</label>
+						<select class="form-control" id="donation_type1" name="donation_type1" required>
+							<option value="" selected disabled hidden>Donation Category</option>
+							<option value="1">Clothing</option>
+							<option value="2">Appliances/Stereos</option>
+							<option value="3">Cars/Trucks/RVs/ Boats/Motorcycles</option>
+							<option value="4">Dictionaries/Text Books/Encyclopedias</option>
+							<option value="5">Furniture</option>
+							<option value="6">Household Items</option>
+							<option value="7">Furnishings</option>
+							<option value="8">Computers and all Peripherals</option>
+							<option value="9">Records/CDs/Tapes/DVDs/Video Games</option>
+							<option value="10">Sporting Goods and Exercise Equipment</option>
+						</select>	
 					</div>
 					<div class="form-group">
-						<label for="lname">Last Name:</label>
-						<input type="text" class="form-control" id="lname" name="lname" required
+						<label for="amount1">Amount of Donation Items</label>
+						<input type="number" class="form-control" id="amount1" name="amount1" min="1" placeholder = "Amount of Donated Items" required>
 					</div>
-					<div class="form-group">
-						<label for="email">Email address:</label>
-						<input type="email" class="form-control" id="email" name="email" required>
-					</div>
-					<div class="form-group">
-						<label for="pwd">Password:</label>
-						<input type="password" class="form-control" id="pwd" name="pwd" required>
-					</div>
-					<div class="form-group">
-						<label for="pwd_confirm">Password Confirm:</label>
-						<input type="password" class="form-control" id="pwd_confirm" name="pwd_confirm" required>
-					</div>
-					<div class="form-group">
-						<label for="zipcode">Zip Code</label>
-						<input type="text" class="form-control" id="zipcode" name="zipcode" required>
-					</div>
+					
 					<center>
-						<button type="submit" name="register" class="btn btn-primary">Register</button>
+						<button type="submit" name="save" class="btn btn-primary">Save Donations</button>
 					</center>
 				</form>
 			</div>
