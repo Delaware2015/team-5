@@ -10,7 +10,30 @@
 </head>
 <body>
 <div class="container">
-  <h2>GoodWill Stores in the Area</h2>            
+  <h2>Most popular items in the area</h2>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Items Requested</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+      </tr>
+    </tbody>
+  </table>
+    <h2>GoodWill Stores in the Area</h2>            
   <table class="table table-striped">
     <thead>
       <tr>
