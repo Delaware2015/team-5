@@ -2,9 +2,8 @@
 <?php
 	session_start();
 	
-	$email = "William";//$_SESSION['email'];
-	$user_id = '1';//$_SESSION['user_id'];
-	//$email = "helloWilliam";
+	$email = $_SESSION['email'];
+	$user_id = $_SESSION['user_id'];
 	
 	require_once("connect.php");
 	$query="SELECT * FROM Users WHERE user_id = $user_id";
@@ -19,12 +18,10 @@
 		}
 		
 	}
-
-	//$donations_cur_level ='2';
+	
 	$donations_to_go = '5' - $donations_cur_level;
 	$don_percent = '20' * $donations_cur_level;
 	$don_percent_left = '100' - $don_percent;
-	//$current_level = '1';
 
 ?>
 
