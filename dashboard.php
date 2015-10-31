@@ -21,6 +21,8 @@
 
 
 <body>
+	
+	
 	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -39,12 +41,8 @@
 	
 	<!--User Graphs  
 		Items: Progress Bar (until next Discount Level  -->
-	<div>
 		<!--Progress Bar (until next Discount Level  -->
-		<div>Progres Bar</div>
-	</div>
 	<!-- This needs bootstrap centering -->
-
 	<div class="container">
 		<p> Thank you for your donations your current donation level is $$something here$$$.
 			Another $$$$x$$$$$ Donations to reach the next level.<p>
