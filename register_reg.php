@@ -4,7 +4,40 @@
 ?>
 
 <?php
-	//this will be the code to insert intot the database 
+	//this will be the code to insert into the database 
+	
+	
+	if (isset($_POST["register"])){
+	
+		$fname = $_POST['fname'];
+		$lname = $_POST['lname'];
+		$email = $_POST['email'];
+		$pwd = $_POST['pwd'];
+		$pwd_confirm = $_POST['pwd_confirm'];
+		$zipcode = $_POST['zipcode'];
+		
+		//make session vars
+		$_SESSION['email'] = $email;
+		$_SESSION['zipcode'] = $zipcode;
+		
+		$registerQuery = "INSERT INTO Users (email, zip, password, first_name, last_name) VALUES ('$email', '$zipcode', '$pwd', '$fname', '$lname')";
+		if($r = mysql_query($registerQuery)){
+			print_r($_SESSION);
+			echo '<script type="text/javascript">
+							function leave() {
+								window.location = "dashboard.php";
+							}
+							setTimeout("leave()", 1000);
+						</script>';
+		}else{
+			echo"dog";
+		}
+	
+	}
+	
+	
+	
+	
 ?>
 
 <html>
@@ -51,30 +84,30 @@
 					<div class="col-xs-8"><h2><center>Register</center></h2></div>
 					<div class="col-xs-2">.col-xs-2</div>
 				</div>
-				<form role="form" action="register_reg.php">
+				<form action="register_reg.php" method="post">
 					<div class="form-group">
 						<label for="fname">First Name:</label>
-						<input type="text" class="form-control" id="fname" name="fname">
+						<input type="text" class="form-control" id="fname" name="fname" required>
 					</div>
 					<div class="form-group">
 						<label for="lname">Last Name:</label>
-						<input type="text" class="form-control" id="lname" name="lname">
+						<input type="text" class="form-control" id="lname" name="lname" required
 					</div>
 					<div class="form-group">
 						<label for="email">Email address:</label>
-						<input type="email" class="form-control" id="email" name="email">
+						<input type="email" class="form-control" id="email" name="email" required>
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label>
-						<input type="password" class="form-control" id="pwd" name="pwd">
+						<input type="password" class="form-control" id="pwd" name="pwd" required>
 					</div>
 					<div class="form-group">
-						<label for="pwd-confirm">Password Confirm:</label>
-						<input type="password" class="form-control" id="pwd-confirm" name="pwd-confirm">
+						<label for="pwd_confirm">Password Confirm:</label>
+						<input type="password" class="form-control" id="pwd_confirm" name="pwd_confirm" required>
 					</div>
 					<div class="form-group">
 						<label for="zipcode">Zip Code</label>
-						<input type="text" class="form-control" id="zipcode" name="zipcode">
+						<input type="text" class="form-control" id="zipcode" name="zipcode" required>
 					</div>
 					<center>
 						<button type="submit" name="register" class="btn btn-primary">Register</button>
