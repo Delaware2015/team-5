@@ -1,100 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
+<title>Goodwill Login</title>
 <meta charset="UTF-8">
+<?php
+session_start();
+require_once __DIR__ . '/web-test/Facebook/autoload.php';
+$fb = new Facebook\Facebook([
+  'app_id' => '133218297035484',
+  'app_secret' => 'a5a45ec06f5849a8f043a3040ee0dc17',
+  'default_graph_version' => 'v2.5',
+  ]);
+$helper = $fb->getRedirectLoginHelper();
+$permissions = ['email']; // optional
+	
+try {
+	if (isset($_SESSION['facebook_access_token'])) {
+		$accessToken = $_SESSION['facebook_access_token'];
+	} else {
+  		$accessToken = $helper->getAccessToken();
+	}
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
+ 	// When Graph returns an error
+ 	echo 'Graph returned an error: ' . $e->getMessage();
+  	exit;
+} catch(Facebook\Exceptions\FacebookSDKException $e) {
+ 	// When validation fails or other local issues
+	echo 'Facebook SDK returned an error: ' . $e->getMessage();
+  	exit;
+ }
+if (isset($accessToken)) {
+	if (isset($_SESSION['facebook_access_token'])) {
+		$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
+	} else {
+		// getting short-lived access token
+		$_SESSION['facebook_access_token'] = (string) $accessToken;
+	  	// OAuth 2.0 client handler
+		$oAuth2Client = $fb->getOAuth2Client();
+		// Exchanges a short-lived access token for a long-lived one
+		$longLivedAccessToken = $oAuth2Client->getLongLivedAccessToken($_SESSION['facebook_access_token']);
+		$_SESSION['facebook_access_token'] = (string) $longLivedAccessToken;
+		// setting default access token to be used in script
+		$fb->setDefaultAccessToken($_SESSION['facebook_access_token']);
+	}
+	// redirect the user back to the same page if it has "code" GET variable
+	if (isset($_GET['code'])) {
+		header('Location:http://45.55.43.61/sean/landing.php');
+	}
+	// getting basic info about user
+	try {
+		$profile_request = $fb->get('/me?fields=name,first_name,last_name,email');
+		$profile = $profile_request->getGraphNode()->asArray();
+	} catch(Facebook\Exceptions\FacebookResponseException $e) {
+		// When Graph returns an error
+		echo 'Graph returned an error: ' . $e->getMessage();
+		exit;
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
+		// When validation fails or other local issues
+		echo 'Facebook SDK returned an error: ' . $e->getMessage();
+		exit;
+	}
+	
+	// printing $profile array on the screen which holds the basic info about user
+	print_r($profile);
+	echo '<a href="http://45.55.43.61/sean/logout.php">Log Out</a>';
+	//header("Location:http://45.55.43.61/sean/login-new.php");
+	
+	echo $profile["email"];
+	$_SESSION["user_email"] = $profile["email"];
+	$_SESSION["first"] = $profile["first_name"];
+	$_SESSION["last"] = $profile["last_name"];
+	
+	echo $_SESSION["user_email"];
+	echo "your name is " . $_SESSION["first"] . " " . $_SESSION["last"];
+	echo "<br><p>hello there its me</p>";
+	
+  	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
+} else {
+	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
+	$loginUrl = $helper->getLoginUrl('http://45.55.43.61/sean/login.php', $permissions);
+	//echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
+	$loginMessage = '<a style="text-align:center;" href="' . $loginUrl . '">Log in with Facebook!</a>';
+	
+}
+
+?>
 </head>
 <body>
-<script>
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-	  document.getElementById('status').innerHTML = 'Log In ' +
-	  'with Facebook.';
-     //document.getElementById('status').innerHTML = 'Please log ' +
-        //'into Facebook.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '743783415766582',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
-  });
-
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-	  console.log(response);	
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '! Your email is ' + response.email + '!';
-		
-    });
-  }
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
 
 <h3>Login</h3>
 
@@ -107,8 +99,7 @@
 		<input type="submit" value="Submit">
 	</form>	
 	<p style="text-align:center;">OR</p>
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<?php echo $loginMessage ?>
 
 <div id="status">
 </div>
