@@ -15,11 +15,11 @@
 	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a href="homepage.html"> <img src="goodwillLogo.png" class="img-responsive" alt="Cinque Terre"> </a>
+	      <a href="homepage.html"> <img src="http://www.goodwill.org/wp-content/themes/GII/images/general/header_logo.png" class="img-responsive" alt="Cinque Terre"> </a>
 	    </div>
 	  </div>
 	</nav>
-	
+	<div></div>
 	<!--User Information  
 		Items: Email Address, Level Discount Percentage the User is At -->
 	<div>
