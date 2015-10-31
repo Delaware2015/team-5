@@ -92,10 +92,22 @@
   the FB.login() function when clicked.
 -->
 
+<h3>Login</h3>
+
+<div style="text-align:center;" >
+	<form action="login.php" method="post">
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="uname"><br><br>
+		<label for="password">Password:</label>
+		<input type="text" name="username" id="pword"><br><br>
+		<input type="submit" value="Submit">
+	</form>	
+	<p style="text-align:center;">OR</p>
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
+</div>
 </div>
 
 </body>
