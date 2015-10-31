@@ -11,6 +11,8 @@
 	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	  <link rel='stylesheet' href='style.css' />
 </head>
+
+
 <body>
 	<nav style="background-color:#5eb0e5"class="navbar navbar-default">
 	  <div class="container-fluid">
